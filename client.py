@@ -1,4 +1,5 @@
 import socket 
+# import threading
 
 # 64 bytes 
 HEADER = 64 
@@ -35,4 +36,5 @@ def message():
     else:
       send(client_message)
 
-message()
+def start_client():
+  message()

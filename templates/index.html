@@ -8,9 +8,12 @@
 </head>
 <body>
   <h2>Chatting App</h2>
-  <div id="input-message">
-    <input id = "ComposedMessage" type = "text" placeholder="Enter some text...">
-    <input id = "SendMessage" value = "Send" class = "Button" type = "submit">
-  </div>
+  <div>Message: {{past_message}}</div>
+  <form action="#" method="post" id="input-message">
+    <div class="input">
+      <input type="text" name="ComposedMessage" id="ComposedMessage" placeholder="Enter some text..."> 
+      <button id="SendMessage">Send</button> 
+    </div>
+  </form>
 </body>
 </html>

@@ -4,7 +4,7 @@ import threading
 
 # 64 bytes 
 HEADER = 64 
-PORT = 5050
+PORT = 3000
 SERVER = socket.gethostbyname(socket.gethostname())
 ADDR = (SERVER, PORT)
 FORMAT = 'utf-8'
@@ -36,7 +36,8 @@ def handle_client(conn, addr):
 
 
 
-def start():
+def start_server():
+  print("[STARTING] Server is starting...")
   server.listen()
   print(f"[LISTENING] Server is listening on {SERVER}")
   while True:
@@ -46,7 +47,4 @@ def start():
     thread = threading.Thread(target=handle_client, args=(conn, addr))
     thread.start()
     print(f"[ACTIVE CONNECTIONS] {threading.activeCount()-1}")
-
-print("[STARTING] Server is starting...")
-start()
 
