@@ -15,9 +15,9 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
 class Messages(db.Model):
-  # id = db.Column(db.Integer, primary_key=True)
-  user = db.Column(db.Integer, primary_key=True)
+  id = db.Column(db.Integer, primary_key=True)
   # user = db.Column(db.String(10000), primary_key=True)
+  user = db.Column(db.String(10000))
   saved_message = db.Column(db.String(1000000))
   message_time = db.Column(db.String(1000))
 
@@ -27,13 +27,19 @@ db.create_all()
 @app.route('/', methods=['POST', 'GET'])
 def index():
   all_messaging_entries = Messages.query.all() 
+  print(all_messaging_entries)
 
   if request.method == 'POST':
     inputted_message = request.form["ComposedMessage"]
 
+    # new_message = Messages(saved_message=inputted_message, message_time=str(datetime.datetime.now()))
+    # Must need user number or id
     new_message = Messages(saved_message=inputted_message, message_time=str(datetime.datetime.now()))
     db.session.add(new_message)
     db.session.commit()
+
+    # for message in all_messaging_entries[::-1]:
+    #   print(message.saved_message, message.message_time)
 
     return render_template('index.html', message_list = all_messaging_entries)
   else:

@@ -8,10 +8,12 @@
 </head>
 <body>
   <h2>Chatting App</h2>
-  {% for message in message_list[::-1] %}
-    <p>{{message.user}}: {{message.saved_message}}</p>
-    <p>{{message_time}}</p>
-  {% endfor %}
+  <div class="past_messages">
+    {% for message in message_list %}
+      <p>{{message.user}}: {{message.saved_message}}</p>
+      <p>{{message.message_time}}</p>
+    {% endfor %}
+  </div>
 
   <form action="#" method="post" id="input-message">
     <div class="input">
